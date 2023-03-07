@@ -29,6 +29,7 @@ public class TerminalService {
         for (Terminal terminal : terminalList) {
             System.out.println(terminal);
         }
+
     }
 
     public void updateTerminal(Terminal terminal) {
