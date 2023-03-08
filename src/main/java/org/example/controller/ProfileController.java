@@ -12,10 +12,8 @@ import java.util.Scanner;
 
 public class ProfileController {
     private CardService cardService = new CardService();
-
     public void start() {
         boolean b = true;
-
         while (b) {
             menu();
             int operation = ScannerUtil.getAction();
@@ -50,8 +48,6 @@ public class ProfileController {
             }
         }
     }
-
-
     public void menu() {
         System.out.println("1. Add Card");
         System.out.println("2. Card List ");
@@ -63,10 +59,7 @@ public class ProfileController {
         System.out.println("0. Log out");
     }
 
-    /**
-     * Card
-     */
-
+   // Card
     private void addCard() {
         System.out.print("Enter card number: ");
 
@@ -75,13 +68,11 @@ public class ProfileController {
         Profile profile = ComponentContainer.currentProfile;
         cardService.addCardToProfile(profile.getPhone(), cardNumber);
     }
-
     private void cardList( ) {
         System.out.print("--- Card List ---");
         Profile profile = ComponentContainer.currentProfile;
         cardService.profileCardList(profile.getPhone());
     }
-
     private void changeCardStatus( ) {
         System.out.print("Enter card number: ");
 
@@ -90,7 +81,6 @@ public class ProfileController {
         Profile profile = ComponentContainer.currentProfile;
         cardService.userChangeCardStatus(profile.getPhone(), cardNumber);
     }
-
     private void deleteCard( ) {
         System.out.print("Enter card number: ");
         Scanner scanner = new Scanner(System.in);
@@ -99,7 +89,6 @@ public class ProfileController {
         Profile profile = ComponentContainer.currentProfile;
         cardService.userDeleteCard(profile.getPhone(), cardNumber);
     }
-
     private void refill( ) {
         System.out.print("Enter card number: ");
         Scanner scanner = new Scanner(System.in);
@@ -110,11 +99,7 @@ public class ProfileController {
         Profile profile = ComponentContainer.currentProfile;
         cardService.userRefillCard(profile.getPhone(), cardNumber, amount);
     }
-
-
-    /**
-     * Transaction
-     */
+    // Transaction
     private void transactionList() {
         Profile profile = ComponentContainer.currentProfile;
         System.out.print("*** Transaction List ***\n");
@@ -122,7 +107,6 @@ public class ProfileController {
         List<Transaction> transactionList = transactionRepository.usertransactionList();
         transactionList.forEach(System.out::println);
     }
-
     private void payment() {
         System.out.println("Enter card number: ");
         Scanner scanner = new Scanner(System.in);
@@ -132,6 +116,4 @@ public class ProfileController {
         Profile profile = ComponentContainer.currentProfile;
         cardService.userPayment(profile.getPhone(), cardNumber, terminalCode);
     }
-
-
 }

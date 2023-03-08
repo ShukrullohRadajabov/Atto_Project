@@ -1,8 +1,6 @@
 package org.example.controller;
-
 import org.example.container.ComponentContainer;
 import org.example.dto.Card;
-import org.example.dto.Profile;
 import org.example.dto.Terminal;
 import org.example.dto.Transaction;
 import org.example.repository.CardRepository;
@@ -10,17 +8,12 @@ import org.example.repository.TransactionRepository;
 import org.example.service.CardService;
 import org.example.service.ProfileService;
 import org.example.service.TerminalService;
-import org.example.service.TransactionService;
 import org.example.util.ScannerUtil;
-
 import java.time.LocalDate;
-import java.time.chrono.ChronoLocalDateTime;
-import java.sql.Date;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
-
 public class AdminController {
     private CardService cardService = new CardService();
     private ProfileService profileService = new ProfileService();
@@ -104,7 +97,6 @@ public class AdminController {
             }
         }
     }
-
     public void menu() {
         // (Card)
         System.out.println("1. Create Card");
@@ -135,12 +127,9 @@ public class AdminController {
 
         System.out.println("0. Log out");
     }
-
     /**
      * Card
      */
-
-
     private void addCard() {
         System.out.print("Enter card number: ");
         Scanner scanner = new Scanner(System.in);
@@ -151,11 +140,9 @@ public class AdminController {
 
         cardService.adminCreateCard(cardNumber, expiredDate);
     }
-
     private void cardList() {
         cardService.cardList();
     }
-
     private void deleteCard() {
         System.out.print("Enter card number: ");
         Scanner scanner = new Scanner(System.in);
@@ -163,7 +150,6 @@ public class AdminController {
 
         cardService.adminDeleteCard(cardNumber);
     }
-
     private void changeCardStatus() {
         System.out.print("Enter card number: ");
         Scanner scanner = new Scanner(System.in);
@@ -171,7 +157,6 @@ public class AdminController {
 
         cardService.adminChangeStatus(cardNumber);
     }
-
     private void updateCard() {
         System.out.print("Enter card number: ");
         Scanner scanner = new Scanner(System.in);
@@ -182,12 +167,6 @@ public class AdminController {
 
         cardService.adminUpdateCard(cardNumber, expiredDate);
     }
-
-
-    /**
-     * Terminal
-     */
-
     private void createTerminal() {
         System.out.print("Enter  code: ");
         Scanner scanner = new Scanner(System.in);
@@ -202,11 +181,9 @@ public class AdminController {
 
         terminalService.addTerminal(terminal);
     }
-
     private void terminalList() {
         terminalService.terminalList();
     }
-
     private void updateTerminal() {
         System.out.print("Enter code: ");
         Scanner scanner = new Scanner(System.in);
@@ -221,58 +198,38 @@ public class AdminController {
 
         terminalService.updateTerminal(terminal);
     }
-
     private void changeTerminalStatus() {
         System.out.print("Enter code: ");
         Scanner scanner = new Scanner(System.in);
         String code = scanner.nextLine();
         terminalService.changeTerminalStatus(code);
     }
-
     private void deleteTerminal() {
         System.out.print("Enter code: ");
         Scanner scanner = new Scanner(System.in);
         String code = scanner.nextLine();
         terminalService.deleteTerminal(code);
     }
-
-    /**
-     * Profile
-     */
-
     private void profileList() {
         profileService.profileList();
     }
-
     private void changeProfileStatus() {
         System.out.print("Enter profile phone: ");
         Scanner scanner = new Scanner(System.in);
         String phone = scanner.nextLine();
         profileService.changeProfileStatus(phone);
     }
-
-
-    /**
-     * Transaction
-     */
-
     private List<Transaction> transactionList() {
         TransactionRepository transactionRepository = ComponentContainer.transactionRepository;
         List<Transaction> transactionList = transactionRepository.admintransactionList();
         transactionList.forEach(System.out::println);
         return transactionList;
     }
-
     private void cardCompany() {
         CardRepository cardRepository = ComponentContainer.cardRepository;
         Card card = cardRepository.getCardByNumber("5555");
         System.out.println("Balance -> " + card.getBalance());
     }
-
-    /**
-     * Statistic
-     */
-
     private void todayTransactionList() {
         TransactionRepository transactionRepository = ComponentContainer.transactionRepository;
         List<Transaction> transactionList = transactionRepository.admintransactionList();
@@ -282,7 +239,6 @@ public class AdminController {
             }
         }
     }
-
     private void transactionByDay() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter date of month: ");
@@ -303,7 +259,6 @@ public class AdminController {
 
 
     }
-
     private void transactionBetweenDays() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter first date(d.M.yyyy): ");
@@ -329,7 +284,6 @@ public class AdminController {
         }
 
     }
-
     private void totalBalance(List<Transaction> transactionList) {
         double amount = 0.0;
         for (Transaction transaction : transactionList) {
@@ -337,7 +291,6 @@ public class AdminController {
         }
         System.out.println("Total balance -> " + amount);
     }
-
     private void transactionByTerminal() {
         System.out.println("Enter terminal id: ");
         String terminalId = new Scanner(System.in).nextLine();
@@ -349,7 +302,6 @@ public class AdminController {
         }
         transactionList.forEach(System.out::println);
     }
-
     private void transactionByCard() {
         System.out.println("Enter card number: ");
         String cardNumber = new Scanner(System.in).nextLine();
@@ -361,6 +313,4 @@ public class AdminController {
         }
         transactionList.forEach(System.out::println);
     }
-
-
 }

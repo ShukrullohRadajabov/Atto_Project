@@ -3,11 +3,9 @@ package org.example.controller;
 import org.example.dto.Profile;
 import org.example.service.AuthService;
 import org.example.util.ScannerUtil;
-
 import java.util.Scanner;
 
 public class    AuthController {
-
     public void start() {
         boolean game = true;
         while (game) {
@@ -33,7 +31,6 @@ public class    AuthController {
         System.out.println("2. Registration > ");
         System.out.println("0. Exit > ");
     }
-
     public void login() {
         Scanner scanner = new Scanner(System.in);
 
@@ -46,7 +43,6 @@ public class    AuthController {
         AuthService profileService = new AuthService();
         profileService.login(phone, password);
     }
-
     private void registration() {
         Scanner scanner = new Scanner(System.in);
 
@@ -72,6 +68,4 @@ public class    AuthController {
         AuthService authService = new AuthService();
         authService.registration(profile);
     }
-
-
 }

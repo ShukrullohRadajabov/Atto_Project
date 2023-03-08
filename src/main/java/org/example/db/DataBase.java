@@ -9,9 +9,9 @@ public class DataBase {
 
         try {
             Connection con = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/atto_project",
-                    "postgres",
-                    "3312425bD");
+                    "jdbc:postgresql://localhost:5432/...",
+                    "...",
+                    "...");
             return con;
         } catch (SQLException e) {
             System.out.println(e.getSQLState());
